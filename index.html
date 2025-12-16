@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>WB3 — Teknologi Inovasi AI</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    * { box-sizing: border-box; }
-
     body {
       margin: 0;
       font-family: system-ui, sans-serif;
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       color: white;
-      overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       padding: 20px;
       max-width: 1100px;
       margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     nav a {
@@ -38,76 +36,22 @@
       padding: 80px 20px;
       max-width: 1100px;
       margin: auto;
+      text-align: center;
     }
 
     .hero {
-      min-height: 80vh;
+      min-height: 90vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      animation: fadeUp 1s ease forwards;
     }
 
-    h1 {
-      font-size: 2.4em;
-      margin-bottom: 15px;
+    .hero-content {
+      animation: intro 1.2s ease-out forwards;
+      opacity: 0;
     }
 
-    p {
-      opacity: 0.85;
-      max-width: 700px;
-      margin: auto;
-    }
-
-    .buttons {
-      margin-top: 30px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 14px 26px;
-      border-radius: 30px;
-      margin: 8px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: 0.3s ease;
-    }
-
-    .btn-primary {
-      background: white;
-      color: black;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-    }
-
-    .btn-outline {
-      border: 1px solid rgba(255,255,255,0.6);
-      color: white;
-    }
-
-    .btn-outline:hover {
-      background: rgba(255,255,255,0.1);
-    }
-
-    .card {
-      background: rgba(255,255,255,0.08);
-      padding: 30px;
-      border-radius: 16px;
-      margin-top: 30px;
-      animation: fadeUp 1s ease forwards;
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px;
-      font-size: 0.8em;
-      opacity: 0.6;
-    }
-
-    @keyframes fadeUp {
+    @keyframes intro {
       from {
         opacity: 0;
         transform: translateY(30px);
@@ -116,6 +60,42 @@
         opacity: 1;
         transform: translateY(0);
       }
+    }
+
+    h1 { font-size: 2.5em; margin-bottom: 10px; }
+    p { opacity: 0.85; }
+
+    .buttons {
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      margin: 5px;
+      font-weight: 500;
+      transition: transform 0.2s;
+    }
+
+    .btn:hover { transform: scale(1.05); }
+
+    .primary {
+      background: white;
+      color: black;
+    }
+
+    .outline {
+      border: 1px solid rgba(255,255,255,0.6);
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      opacity: 0.6;
+      font-size: 0.8em;
     }
   </style>
 </head>
@@ -126,62 +106,48 @@
   <strong>WB3</strong>
   <nav>
     <a href="#home">Home</a>
-    <a href="#veo3">VEO3</a>
-    <a href="#contact">Contact</a>
+    <a href="#ai">AI</a>
+    <a href="#projects">Projects</a>
+    <a href="https://wa.me/6281234843756" target="_blank">Contact</a>
   </nav>
 </header>
 
+<!-- HERO -->
 <section id="home" class="hero">
-  <div>
-    <h1>WB3 – Teknologi Inovasi AI</h1>
-    <p>
-      Platform AI generasi baru untuk menciptakan video animasi dan gambar
-      berdurasi panjang dengan banyak karakter.  
-      Dibangun agar bisa diakses oleh semua orang.
-    </p>
+  <div class="hero-content">
+    <h1>WB3</h1>
+    <p>Teknologi Inovasi AI yang bisa diakses oleh semua orang</p>
 
     <div class="buttons">
-      <a href="#veo3" class="btn btn-primary">Explore VEO3</a>
-      <a href="https://wa.me/6281234843756" class="btn btn-outline">WhatsApp</a>
+      <a href="#ai" class="btn primary">Explore</a>
+      <a href="#projects" class="btn outline">Projects</a>
+      <a href="https://wa.me/6281234843756" target="_blank" class="btn outline">WhatsApp</a>
     </div>
   </div>
 </section>
 
-<section id="veo3">
-  <div class="card">
-    <h2>🤖 VEO3 AI</h2>
-    <p>
-      VEO3 adalah sistem AI untuk membuat:
-      <br><br>
-      • Video animasi durasi panjang  
-      • Banyak karakter dalam satu cerita  
-      • Gambar & visual sinematik  
-      • Storytelling otomatis berbasis prompt
-    </p>
-
-    <div class="buttons">
-      <a href="#" class="btn btn-primary">Create Video (Soon)</a>
-      <a href="#" class="btn btn-outline">Generate Image (Soon)</a>
-    </div>
-  </div>
+<!-- AI / VEO3 -->
+<section id="ai">
+  <h2>AI & VEO3</h2>
+  <p>
+    WB3 menyediakan eksperimen AI termasuk pembuatan video animasi,
+    gambar AI, dan ke depannya otomatisasi konten berdurasi panjang
+    dengan banyak karakter.
+  </p>
 </section>
 
-<section id="contact">
-  <div class="card">
-    <h2>📞 Kontak</h2>
-    <p>
-      Punya ide, kolaborasi, atau mau pakai WB3?
-      Hubungi langsung via WhatsApp.
-    </p>
-
-    <div class="buttons">
-      <a href="https://wa.me/6281234843756" class="btn btn-primary">Chat WhatsApp</a>
-    </div>
-  </div>
+<!-- PROJECTS -->
+<section id="projects">
+  <h2>Projects</h2>
+  <p>
+    • AI Video Generator (VEO3)<br/>
+    • AI Image Creator<br/>
+    • Automation Content (YouTube, TikTok, Telegram)
+  </p>
 </section>
 
 <footer>
-  © 2025 WB3 — AI for Everyone
+  © 2025 WB3 — Built from Mobile
 </footer>
 
 </body>
