@@ -3,181 +3,133 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WB3 — Teknologi Inovasi AI</title>
+<title>WB3 — AI Innovation</title>
 
 <style>
-* {box-sizing:border-box;margin:0;padding:0;}
-body {
-  font-family: system-ui, sans-serif;
-  background: radial-gradient(circle at top, #0f2027, #000);
-  color: white;
-  overflow-x: hidden;
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:system-ui, sans-serif;
+  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  color:#fff;
+  overflow-x:hidden;
 }
+header{
+  padding:20px;
+  text-align:center;
+}
+.hero{
+  min-height:90vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+.hero-content{
+  animation:fadeUp 1.2s ease forwards;
+}
+h1{
+  font-size:3em;
+  margin-bottom:10px;
+}
+p{
+  opacity:.8;
+  max-width:600px;
+  margin:auto;
+}
+.buttons{
+  margin-top:30px;
+}
+.btn{
+  display:inline-block;
+  padding:12px 24px;
+  border-radius:30px;
+  text-decoration:none;
+  margin:6px;
+  font-size:.9em;
+}
+.primary{background:#fff;color:#000}
+.outline{border:1px solid rgba(255,255,255,.6);color:#fff}
 
-/* ===== ANIMASI OPENING ===== */
-#intro {
-  position: fixed;
-  inset: 0;
-  background: #000;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 99;
-  animation: fadeOut 1s ease forwards;
-  animation-delay: 2.5s;
+section{
+  padding:80px 20px;
+  max-width:1100px;
+  margin:auto;
 }
-#intro h1 {
-  font-size: 3em;
-  animation: zoomIn 1.5s ease;
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
 }
-#intro p {
-  opacity: 0.7;
-  margin-top: 10px;
+.card{
+  background:rgba(255,255,255,.05);
+  padding:20px;
+  border-radius:20px;
+  backdrop-filter:blur(10px);
+  transition:.3s;
 }
-
-@keyframes zoomIn {
-  from {transform: scale(0.6); opacity:0;}
-  to {transform: scale(1); opacity:1;}
+.card:hover{
+  transform:translateY(-5px);
 }
-@keyframes fadeOut {
-  to {opacity:0; visibility:hidden;}
+footer{
+  text-align:center;
+  padding:30px;
+  opacity:.6;
+  font-size:.8em;
 }
-
-/* ===== NAVBAR ===== */
-header {
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-nav a {
-  color: white;
-  margin-left: 15px;
-  text-decoration: none;
-  opacity: 0.7;
-}
-nav a:hover {opacity:1;}
-
-/* ===== HERO ===== */
-.hero {
-  min-height: 90vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 40px 20px;
-}
-.hero h1 {
-  font-size: 2.5em;
-  margin-bottom: 10px;
-  animation: fadeUp 1s ease;
-}
-.hero p {
-  opacity: 0.8;
-  max-width: 600px;
-  margin: auto;
-  animation: fadeUp 1.3s ease;
-}
-@keyframes fadeUp {
-  from {opacity:0; transform: translateY(20px);}
-  to {opacity:1; transform: translateY(0);}
-}
-
-/* ===== BUTTON ===== */
-.buttons {
-  margin-top: 30px;
-}
-.btn {
-  display: inline-block;
-  padding: 14px 26px;
-  border-radius: 30px;
-  margin: 6px;
-  text-decoration: none;
-  font-size: 0.9em;
-  transition: 0.3s;
-}
-.btn-primary {
-  background: white;
-  color: black;
-}
-.btn-outline {
-  border: 1px solid white;
-  color: white;
-}
-.btn:hover {transform: scale(1.05);}
-
-/* ===== SECTION ===== */
-section {
-  padding: 80px 20px;
-  text-align: center;
-}
-section h2 {
-  margin-bottom: 15px;
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-  opacity: 0.5;
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<div id="intro">
-  <h1>WB3</h1>
-  <p>Teknologi Inovasi AI</p>
-</div>
-
 <header>
   <strong>WB3</strong>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#services">Services</a>
-    <a href="#veo3">Veo3</a>
-    <a href="#contact">Contact</a>
-  </nav>
 </header>
 
-<section class="hero" id="home">
-  <div>
-    <h1>Teknologi Inovasi AI<br>Untuk Semua Orang</h1>
-    <p>
-      WB3 adalah landing page inovasi AI & Web3.
-      Menghubungkan pembuatan video, animasi, dan konten otomatis.
-    </p>
+<div class="hero">
+  <div class="hero-content">
+    <h1>WB3</h1>
+    <p>Teknologi Inovasi AI yang Bisa Diakses oleh Semua Orang</p>
 
     <div class="buttons">
-      <a href="#services" class="btn btn-primary">Explore</a>
-      <a href="#veo3" class="btn btn-outline">Veo3 AI</a>
-      <a href="https://wa.me/6281234843756" class="btn btn-outline">WhatsApp</a>
+      <a href="#veo3" class="btn primary">Create with VEO3</a>
+      <a href="#projects" class="btn outline">Projects</a>
+      <a href="https://wa.me/6281234843756" class="btn outline">WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<section id="veo3">
+  <h2>VEO3 AI Creation</h2>
+  <p style="margin-top:10px">
+    WB3 menjadi jembatan untuk AI Video & Image Generator.
+    Sistem dapat terhubung ke bot Telegram, API AI, atau automation workflow.
+  </p>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="projects" style="margin-top:30px">
+    <div class="card">
+      <h3>AI Video Generator</h3>
+      <p>Generate video panjang dengan banyak karakter menggunakan AI.</p>
+    </div>
+    <div class="card">
+      <h3>AI Image Generator</h3>
+      <p>Create ilustrasi & animasi visual dengan prompt sederhana.</p>
+    </div>
+    <div class="card">
+      <h3>Automation System</h3>
+      <p>Auto upload ke TikTok, YouTube, dan laporan ke Telegram.</p>
     </div>
   </div>
 </section>
 
-<section id="services">
-  <h2>Services</h2>
-  <p>AI Video • Animasi • Gambar • Otomasi Konten</p>
-</section>
-
-<section id="veo3">
-  <h2>Veo3 AI</h2>
-  <p>
-    Sistem AI untuk membuat video berdurasi panjang,
-    banyak karakter, dan siap upload ke platform.
-  </p>
-</section>
-
-<section id="contact">
-  <h2>Contact</h2>
-  <p>Hubungi langsung via WhatsApp untuk kolaborasi.</p>
-</section>
-
 <footer>
-  © 2025 WB3 — Built from Mobile
+  © 2025 WB3 — Built with Vision
 </footer>
 
 </body>
