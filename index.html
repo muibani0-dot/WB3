@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page Pinterest-Style</title>
+    <title>My Inspiration Board</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,10 +12,38 @@
             background-color: #f0f0f0;
         }
         header {
-            background-color: #e60023;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 20px;
+            padding: 40px 20px;
             text-align: center;
+            animation: fadeInDown 1s ease-out;
+            position: relative;
+        }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .logo {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .logo img {
+            width: 60px;
+            height: 60px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
         }
         .container {
             max-width: 1200px;
@@ -33,6 +61,10 @@
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             position: relative;
+            transition: transform 0.3s ease;
+        }
+        .item:hover {
+            transform: scale(1.05);
         }
         .item img {
             width: 100%;
@@ -54,6 +86,11 @@
             padding: 5px 10px;
             cursor: pointer;
             border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .item:hover .edit-btn {
+            opacity: 1;
         }
         .share-btn {
             position: absolute;
@@ -65,6 +102,11 @@
             padding: 5px 10px;
             cursor: pointer;
             border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .item:hover .share-btn {
+            opacity: 1;
         }
         .add-item {
             background-color: #ddd;
@@ -76,6 +118,7 @@
             cursor: pointer;
             font-size: 24px;
             color: #666;
+            transition: background-color 0.3s;
         }
         .add-item:hover {
             background-color: #ccc;
@@ -83,93 +126,6 @@
         #file-input {
             display: none;
         }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Landing Page Pinterest-Style</h1>
-        <p>Tampilan seperti Pinterest: Grid gambar/video yang bisa diedit dan dibagikan.</p>
-    </header>
-    <div class="container">
-        <div class="grid" id="grid">
-            <!-- Item contoh -->
-            <div class="item">
-                <img src="https://via.placeholder.com/250x300?text=Gambar+1" alt="Gambar 1">
-                <button class="edit-btn" onclick="editItem(this)">Edit</button>
-                <button class="share-btn" onclick="shareItem('Gambar 1')">Share</button>
-            </div>
-            <div class="item">
-                <video controls>
-                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                    Browser Anda tidak mendukung video.
-                </video>
-                <button class="edit-btn" onclick="editItem(this)">Edit</button>
-                <button class="share-btn" onclick="shareItem('Video 1')">Share</button>
-            </div>
-            <!-- Item tambah baru -->
-            <div class="item add-item" onclick="document.getElementById('file-input').click()">
-                + Tambah Gambar/Video
-            </div>
-        </div>
-        <input type="file" id="file-input" accept="image/*,video/*" onchange="addItem(event)">
-    </div>
-
-    <script>
-        function editItem(btn) {
-            // Fungsi edit sederhana: ganti gambar/video (dalam implementasi nyata, bisa lebih kompleks)
-            const item = btn.parentElement;
-            const media = item.querySelector('img') || item.querySelector('video');
-            const newSrc = prompt('Masukkan URL baru untuk gambar/video:', media.src);
-            if (newSrc) {
-                if (media.tagName === 'IMG') {
-                    media.src = newSrc;
-                } else {
-                    media.querySelector('source').src = newSrc;
-                    media.load();
-                }
-            }
-        }
-
-        function shareItem(title) {
-            // Fungsi share sederhana ke sosial media (contoh: Facebook dan Twitter)
-            const url = window.location.href;
-            const text = `Lihat ${title} di landing page ini!`;
-            const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`;
-            const twUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
-            window.open(fbUrl, '_blank');
-            window.open(twUrl, '_blank');
-        }
-
-        function addItem(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const grid = document.getElementById('grid');
-                    const newItem = document.createElement('div');
-                    newItem.className = 'item';
-                    if (file.type.startsWith('image/')) {
-                        newItem.innerHTML = `
-                            <img src="${e.target.result}" alt="Gambar Baru">
-                            <button class="edit-btn" onclick="editItem(this)">Edit</button>
-                            <button class="share-btn" onclick="shareItem('Gambar Baru')">Share</button>
-                        `;
-                    } else if (file.type.startsWith('video/')) {
-                        newItem.innerHTML = `
-                            <video controls>
-                                <source src="${e.target.result}" type="${file.type}">
-                                Browser Anda tidak mendukung video.
-                            </video>
-                            <button class="edit-btn" onclick="editItem(this)">Edit</button>
-                            <button class="share-btn" onclick="shareItem('Video Baru')">Share</button>
-                        `;
-                    }
-                    // Sisipkan sebelum item "Tambah"
-                    grid.insertBefore(newItem, grid.lastElementChild);
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-    </script>
-</body>
-</html>
+        .personal-note {
+            text-align: center;
+            margin-bottom
