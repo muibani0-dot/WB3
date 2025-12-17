@@ -3,254 +3,382 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Inspiration Board</title>
+    <title>Website Lowongan Pekerjaan</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
+            transition: background 0.5s;
             min-height: 100vh;
         }
-        header {
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            animation: fadeIn 1s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .login-form {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            width: 350px;
+            backdrop-filter: blur(10px);
+        }
+        .login-form input {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .login-form button {
+            width: 100%;
+            padding: 12px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 40px 20px;
-            text-align: center;
-            animation: fadeInDown 1s ease-out;
-            position: relative;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.2s;
         }
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .login-form button:hover {
+            transform: scale(1.05);
         }
-        .logo {
-            font-size: 48px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        .logo img {
-            width: 60px;
-            height: 60px;
-            vertical-align: middle;
-            margin-right: 10px;
-            border-radius: 50%;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
-        .subtitle {
-            font-size: 18px;
-            opacity: 0.9;
-        }
-        .container {
+        .main-container {
+            display: none;
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .item {
-            background-color: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 2px solid transparent;
-        }
-        .item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            border-color: #667eea;
-        }
-        .item img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: filter 0.3s ease;
-        }
-        .item:hover img {
-            filter: brightness(1.1);
-        }
-        .item video {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        .edit-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: rgba(102, 126, 234, 0.8);
+        header {
+            background: linear-gradient(135deg, #333 0%, #555 100%);
             color: white;
-            border: none;
-            padding: 8px 12px;
-            cursor: pointer;
-            border-radius: 20px;
-            opacity: 0;
-            transition: opacity 0.3s, background-color 0.3s;
-            font-size: 12px;
-        }
-        .edit-btn:hover {
-            background-color: rgba(102, 126, 234, 1);
-        }
-        .item:hover .edit-btn {
-            opacity: 1;
-        }
-        .share-btn {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background-color: rgba(118, 75, 162, 0.8);
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            cursor: pointer;
-            border-radius: 20px;
-            opacity: 0;
-            transition: opacity 0.3s, background-color 0.3s;
-            font-size: 12px;
-        }
-        .share-btn:hover {
-            background-color: rgba(118, 75, 162, 1);
-        }
-        .item:hover .share-btn {
-            opacity: 1;
-        }
-        .add-item {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            border: 2px dashed #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 200px;
-            cursor: pointer;
-            font-size: 24px;
-            color: white;
-            transition: background 0.3s, transform 0.3s;
-            border-radius: 15px;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-        .add-item:hover {
-            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
-            transform: scale(1.05);
-        }
-        #file-input {
-            display: none;
-        }
-        .personal-note {
+            padding: 30px;
             text-align: center;
-            margin-bottom: 20px;
-            font-style: italic;
-            color: #333;
-            background-color: rgba(255,255,255,0.8);
-            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            position: relative;
+            transition: background 0.5s;
+        }
+        .logo {
+            font-size: 36px;
+            font-weight: bold;
+            animation: slideInLeft 1.5s ease-out;
+            cursor: pointer;
+            display: inline-block;
+        }
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .logo img {
+            width: 50px;
+            height: 50px;
+            vertical-align: middle;
+            margin-right: 10px;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+        .logout-btn:hover {
+            transform: scale(1.05);
+        }
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .job-item {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .job-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+        .job-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .job-item h3 {
+            margin: 15px 0 10px;
+            color: #333;
+        }
+        .job-item p {
+            color: #666;
+            line-height: 1.5;
+        }
+        .admin-panel {
+            display: none;
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        .admin-panel input, .admin-panel textarea, .admin-panel select {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .admin-panel button {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: transform 0.2s;
+        }
+        .admin-panel button:hover {
+            transform: scale(1.05);
+        }
+        .toggle-admin {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .toggle-admin button {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+            color: black;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.2s;
+        }
+        .toggle-admin button:hover {
+            transform: scale(1.05);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        .modal-content img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .close {
+            float: right;
+            font-size: 28px;
+            cursor: pointer;
+            color: #666;
+        }
+        .close:hover {
+            color: #333;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="https://via.placeholder.com/60x60?text=W3" alt="WEB3 Logo"> <!-- Placeholder logo WEB3, ganti dengan URL logo asli -->
-            My Inspiration Board
-        </div>
-        <p class="subtitle">Koleksi gambar dan video pribadi Anda, mudah diedit dan dibagikan.</p>
-    </header>
-    <div class="container">
-        <div class="personal-note">
-            Selamat datang di board inspirasi pribadi Anda! Tambahkan gambar atau video favorit untuk membuatnya lebih personal dan berwarna.
-        </div>
-        <div class="grid" id="grid">
-            <!-- Item contoh -->
-            <div class="item">
-                <img src="https://via.placeholder.com/250x300/ff6b6b/ffffff?text=Gambar+1" alt="Gambar 1">
-                <button class="edit-btn" onclick="editItem(this)">Edit</button>
-                <button class="share-btn" onclick="shareItem('Gambar 1')">Share</button>
+    <!-- Halaman Login -->
+    <div id="login-container" class="login-container">
+        <form class="login-form" id="login-form">
+            <h2>Login ke Website Lowongan</h2>
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+            <p style="text-align: center; margin-top: 15px; color: #666;">Default: admin / admin</p>
+        </form>
+    </div>
+
+    <!-- Halaman Utama (Setelah Login) -->
+    <div id="main-container" class="main-container">
+        <header id="header">
+            <div class="logo" onclick="alert('Logo diklik! Navigasi ke halaman utama.')">
+                <img src="https://via.placeholder.com/50x50?text=LOGO" alt="Logo"> <!-- Ganti dengan URL logo asli -->
+                Lowongan Kerja Pro
             </div>
-            <div class="item">
-                <video controls>
-                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                    Browser Anda tidak mendukung video.
-                </video>
-                <button class="edit-btn" onclick="editItem(this)">Edit</button>
-                <button class="share-btn" onclick="shareItem('Video 1')">Share</button>
-            </div>
-            <!-- Item tambah baru -->
-            <div class="item add-item" onclick="document.getElementById('file-input').click()">
-                + Tambah Gambar/Video
-            </div>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </header>
+        <div class="jobs-grid" id="jobs-grid">
+            <!-- Lowongan akan ditampilkan di sini -->
         </div>
-        <input type="file" id="file-input" accept="image/*,video/*" onchange="addItem(event)">
+        <div class="toggle-admin">
+            <button onclick="toggleAdminPanel()">Panel Admin (Edit Tampilan & Tambah Lowongan)</button>
+        </div>
+        <div id="admin-panel" class="admin-panel">
+            <h3>Edit Tampilan</h3>
+            <label>Ganti Background Body:</label>
+            <select id="bg-color">
+                <option value="linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%)">Gradient Pink-Blue</option>
+                <option value="linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)">Gradient Mint-Pink</option>
+                <option value="linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)">Gradient Orange</option>
+            </select>
+            <label>Ganti Background Header:</label>
+            <select id="header-color">
+                <option value="linear-gradient(135deg, #333 0%, #555 100%)">Gradient Dark</option>
+                <option value="linear-gradient(135deg, #667eea 0%, #764ba2 100%)">Gradient Blue-Purple</option>
+                <option value="linear-gradient(135deg, #e60023 0%, #ff4500 100%)">Gradient Red</option>
+            </select>
+            <button onclick="applyTheme()">Terapkan Tema</button>
+            <h3>Tambah Lowongan Pekerjaan</h3>
+            <input type="text" id="job-title" placeholder="Judul Lowongan" required>
+            <textarea id="job-desc" placeholder="Deskripsi Lowongan" rows="4" required></textarea>
+            <input type="url" id="job-image" placeholder="URL Gambar (opsional)">
+            <button onclick="addJob()">Tambah Lowongan</button>
+        </div>
+    </div>
+
+    <!-- Modal untuk Detail Lowongan -->
+    <div id="job-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title"></h2>
+            <img id="modal-image" src="" alt="">
+            <p id="modal-desc"></p>
+        </div>
     </div>
 
     <script>
-        function editItem(btn) {
-            // Fungsi edit sederhana: ganti gambar/video (dalam implementasi nyata, bisa lebih kompleks)
-            const item = btn.parentElement;
-            const media = item.querySelector('img') || item.querySelector('video');
-            const newSrc = prompt('Masukkan URL baru untuk gambar/video:', media.src);
-            if (newSrc) {
-                if (media.tagName === 'IMG') {
-                    media.src = newSrc;
-                } else {
-                    media.querySelector('source').src = newSrc;
-                    media.load();
-                }
+        // Simulasi login (default: admin/admin)
+        const loginForm = document.getElementById('login-form');
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if (username === 'admin' && password === 'admin') {
+                document.getElementById('login-container').style.display = 'none';
+                document.getElementById('main-container').style.display = 'block';
+                loadJobs();
+            } else {
+                alert('Username atau password salah!');
+            }
+        });
+
+        // Logout
+        function logout() {
+            document.getElementById('login-container').style.display = 'flex';
+            document.getElementById('main-container').style.display = 'none';
+        }
+
+        // Toggle panel admin
+        function toggleAdminPanel() {
+            const panel = document.getElementById('admin-panel');
+            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Terapkan tema
+        function applyTheme() {
+            const bgColor = document.getElementById('bg-color').value;
+            const headerColor = document.getElementById('header-color').value;
+            document.body.style.background = bgColor;
+            document.getElementById('header').style.background = headerColor;
+            localStorage.setItem('bgColor', bgColor);
+            localStorage.setItem('headerColor', headerColor);
+        }
+
+        // Tambah lowongan
+        function addJob() {
+            const title = document.getElementById('job-title').value;
+            const desc = document.getElementById('job-desc').value;
+            const image = document.getElementById('job-image').value || 'https://via.placeholder.com/300x150?text=Lowongan';
+            if (title && desc) {
+                const jobs = JSON.parse(localStorage.getItem('jobs')) || [];
+                jobs.push({ title, desc, image });
+                localStorage.setItem('jobs', JSON.stringify(jobs));
+                loadJobs();
+                document.getElementById('job-title').value = '';
+                document.getElementById('job-desc').value = '';
+                document.getElementById('job-image').value = '';
+            } else {
+                alert('Isi judul dan deskripsi!');
             }
         }
 
-        function shareItem(title) {
-            // Fungsi share sederhana ke sosial media (contoh: Facebook dan Twitter)
-            const url = window.location.href;
-            const text = `Lihat ${title} di board inspirasi saya!`;
-            const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`;
-            const twUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
-            window.open(fbUrl, '_blank');
-            window.open(twUrl, '_blank');
+        // Load lowongan
+        function loadJobs() {
+            const jobsGrid = document.getElementById('jobs-grid');
+            jobsGrid.innerHTML = '';
+            const jobs = JSON.parse(localStorage.getItem('jobs')) || [];
+            jobs.forEach((job, index) => {
+                const jobItem = document.createElement('div');
+                jobItem.className = 'job-item';
+                jobItem.onclick = () => openModal(job);
+                jobItem.innerHTML = `
+                    <img src="${job.image}" alt="${job.title}">
+                    <h3>${job.title}</h3>
+                    <p>${job.desc.substring(0, 100)}...</p>
+                `;
+                jobsGrid.appendChild(jobItem);
+            });
+            // Load tema
+            const bgColor = localStorage.getItem('bgColor') || 'linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%)';
+            const headerColor = localStorage.getItem('headerColor') || 'linear-gradient(135deg, #333 0%, #555 100%)';
+            document.body.style.background = bgColor;
+            document.getElementById('header').style.background = headerColor;
         }
 
-        function addItem(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const grid = document.getElementById('grid');
-                    const newItem = document.createElement('div');
-                    newItem.className = 'item';
-                    if (file.type.startsWith('image/')) {
-                        newItem.innerHTML = `
-                            <img src="${e.target.result}" alt="Gambar Baru">
-                            <button class="edit-btn" onclick="editItem(this)">Edit</button>
-                            <button class="share-btn" onclick="shareItem('Gambar Baru')">Share</button>
-                        `;
-                    } else if (file.type.startsWith('video/')) {
-                        newItem.innerHTML = `
-                            <video controls>
-                                <source src="${e.target.result}" type="${file.type}">
-                                Browser Anda tidak mendukung video.
-                            </video>
-                            <button class="edit-btn" onclick="editItem(this)">Edit</button>
-                            <button class="share-btn" onclick="shareItem('Video Baru')">Share</button>
-                        `;
-                    }
-                    // Sisipkan sebelum item "Tambah"
-                    grid.insertBefore(newItem, grid.lastElementChild);
-                };
-                reader.readAsDataURL(file);
-            }
+        // Buka modal detail
+        function openModal(job) {
+            document.getElementById('modal-title').textContent = job.title;
+            document.getElementById('modal-image').src = job.image;
+            document.getElementById('modal-desc').textContent = job.desc;
+            document.getElementById('job-modal').style.display = 'flex';
         }
+
+        // Tutup modal
+        function closeModal() {
+            document.getElementById('job-modal').style.display = 'none';
+        }
+
+        // Load saat halaman dimuat
+        window.onload = loadJobs;
     </script>
 </body>
 </html>
